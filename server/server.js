@@ -4,16 +4,18 @@ const http = require("http").Server(app);
 const path = require("path");
 const io = require("socket.io")(http);
 
-// const uri = process.env.MONGODB_URI;
+const uri =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://Voldy21:Jdtgr9704@cluster0.isfzn.mongodb.net/test";
 const port = process.env.PORT || 5000;
 
-// const Message = require("./message");
-// const mongoose = require("mongoose");
+const Message = require("./message");
+const mongoose = require("mongoose");
 
-// mongoose.connect(uri, {
-//   useUnifiedTopology: true,
-//   useNewUrlParser: true,
-// });
+mongoose.connect(uri, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
 app.use(express.static(path.join(__dirname, "..", "client", "build")));
 
